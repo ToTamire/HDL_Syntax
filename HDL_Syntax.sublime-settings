@@ -1,0 +1,14 @@
+{
+    // Minimum delay in seconds before linter run
+    // Possible values: int, float
+    // Default value: 0.1
+    "delay": 0.1,
+
+    // Specify directories to be searched for files included using Verilog `include
+    // Possible values: list of "<path>"
+    // Example value: ["C:/project1/includes_1/", "C:/project1/includes_2/"]
+    // Default value: []
+    "incdirs": [
+        
+    ]
+}

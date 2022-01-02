@@ -1,0 +1,31 @@
+[
+    {
+        "caption": "Preferences",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "HDL_Syntax",
+                        "children":
+                        [
+                            {
+                                "command": "edit_settings",
+                                "args":
+                                {
+                                    "base_file": "${packages}/HDL_Syntax/HDL_Syntax.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "Settings"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

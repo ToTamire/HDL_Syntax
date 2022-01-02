@@ -1,0 +1,11 @@
+[
+    {
+        "caption": "HDL_Syntax: Settings",
+        "command": "edit_settings",
+        "args":
+        {
+            "base_file": "${packages}/HDL_Syntax/HDL_Syntax.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
+    }
+]
