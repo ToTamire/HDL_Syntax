@@ -111,6 +111,7 @@ class HDL_Preprocessor:
         regions = []
         # Search preprocessor directives
         while pos < len(content):
+            last_pos = pos
             pattern = re.compile(r'(`|"|\/\/|\/\*)')
             match = pattern.search(content, pos)
             if match:
@@ -149,7 +150,7 @@ class HDL_Preprocessor:
                     match = False
                     # Include
                     if not match:
-                        pattern = re.compile(r'(`include) "([^"]+)"')
+                        pattern = re.compile(r'(`include)\s+"([^"]+)"')
                         match = pattern.match(content, match_start)
                         if match:
                             file_name = os.path.join(self.head[-1], match.group(2))
@@ -180,12 +181,12 @@ class HDL_Preprocessor:
                             pos = match.end(2) + 1
                     # Define
                     if not match:
-                        pattern = re.compile(r'(`define) ([a-zA-Z_][a-zA-Z0-9_$]*)')
+                        pattern = re.compile(r'(`define)\s+([a-zA-Z_][a-zA-Z0-9_$]*)')
                         match = pattern.match(content, match_start)
                         if match:
                             if match.group(2) not in self.defines:
                                 self.defines.append(match.group(2))
-                                pos = match.end(2)
+                            pos = match.end(2)
                     # Undefine
                     if not match:
                         pattern = re.compile(r'(`undef)\s+([a-zA-Z_][a-zA-Z0-9_$]*)')
@@ -193,7 +194,7 @@ class HDL_Preprocessor:
                         if match:
                             if match.group(2) in self.defines:
                                 self.defines.remove(match.group(2))
-                                pos = match.end(2)
+                            pos = match.end(2)
                     # Reset all defines
                     if not match:
                         pattern = re.compile(r'(`resetall)[^a-zA-Z0-9_$]')
@@ -261,6 +262,9 @@ class HDL_Preprocessor:
                     pos = match_end
             else:
                 pos = len(content)
+            if pos == last_pos:
+                print(f"HDL_Syntax: Internal error at position {pos}.")
+                pos += 1
         return regions
 
 
